@@ -1,0 +1,29 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content%}
+
+<center>
+    <div class="card" style="width: 38rem;">
+        <div class="card-header" style="font-family: Helvetica; font-size: x-large;">
+            Delete category
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <form method="POST">
+                    {% csrf_token %}   
+                    <p style="font-size: x-large;">Are you Sure to delete book '{{ category }}'?</p>
+                    <p style="font-size: x-large;">This can't be undone!</p>
+                    </br>
+                    <input type="submit" class="btn btn-outline-danger btn-lg" value="Confirm"/>
+                    <a class="btn btn-outline-warning btn-lg" href="{% url 'listcategory' %}" role="button">Cancel</a>
+                </form>
+            </p>
+        </div>
+    </div>
+
+</center>
+
+
+{% endblock %}

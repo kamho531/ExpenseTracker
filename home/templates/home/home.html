@@ -1,0 +1,82 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content%}
+<!doctype html>
+{% if user.is_authenticated %}
+<center><h2>Book Distribution Expense</h2></center>
+<br/>
+<table class="table table-hover table-striped">
+  <thead class="table table-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Title</th>
+      <th scope="col">Subtitle</th>
+      <th scope="col">Authors</th>
+      <th scope="col">Publisher</th>
+      <th scope="col">Published Date</th>
+      <th scope="col">Category</th>
+      <th scope="col">Expense</th>
+    </tr>
+  </thead>
+  <tbody>
+
+      {% for book in books|dictsort:"title" %}
+
+      <tr>
+        <td>{{ book.id }}</td>
+        <td><a href="{% url 'updatebook' book.id %}">{{ book.title }}</a></td>
+        <td>{{ book.subtitle }}</td>
+        <td>{{ book.authors }}</td>
+        <td>{{ book.publisher }}</td>
+        <td>{{ book.published_date }}</td>
+        <td>{{ book.category }}</td>
+        <td>{{ book.distribution_expense }}</td>
+      </tr>
+
+      {% endfor %}
+   
+  </tbody>
+</table>     
+    
+{% else %}
+
+<center>
+
+  <br>
+  <div class="card" style="width: 28rem;">
+    <div class="card-header" style="font-family: Helvetica; font-size: x-large;">
+      User Login
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <form method="POST" style="font-size: large;" action="{% url 'home' %}">
+          {% csrf_token %}
+          <form>
+            <div class="mb-3">
+              <input type="text" class="form-control" name="username" placeholder="Username" required>
+            </div>
+            <br>
+            <div class="mb-3">
+              <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            </br>
+            <button type="submit" class="btn btn-outline-info btn-lg">Login</button>               
+        </form>
+      </p>
+    </div>
+    <div class="card-footer text-muted" style="font-size: large;">
+      Don't have an account? <a href="{% url 'usersignup' %}">Sign up</a> here!
+      </br>
+      Forgot password? Click here to <a href="{% url 'reset_password' %}">reset</a>.
+    </div>
+  </div>
+</center>
+
+
+{% endif %}
+
+
+
+{% endblock %}

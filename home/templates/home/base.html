@@ -1,0 +1,52 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    
+    <style>
+      a { text-decoration: none;}
+      a:hover {text-decoration: underline;}
+
+      body {
+        background-color: rgb(219, 222, 221);
+      }
+
+      .card .card-header {
+        background-color:rgb(121, 252, 233);
+      }
+
+      .card .card-footer {
+        background-color: rgb(121, 252, 233);
+      }
+
+
+
+    </style>
+  </head>
+  <body>
+    {% include 'home/navbar.html' %}
+    <br>
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content%}
+        {% endblock %}
+        
+    </div>
+    <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
+  </body>
+</html>

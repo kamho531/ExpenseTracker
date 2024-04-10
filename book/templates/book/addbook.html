@@ -1,0 +1,30 @@
+{% extends 'home/base.html' %}
+
+{% block content%}
+
+<center>
+    <div class="card" style="width: 48rem;">
+        <div class="card-header" style="font-family: Helvetica; font-size: x-large;">
+            Add a book record
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                
+                    {{ form.as_p }}
+
+                    </br>
+                    <button type="submit" class="btn btn-outline-info btn-lg">Save</button>
+                    <a class="btn btn-outline-warning btn-lg" href="{% url 'home' %}" role="button">Cancel</a>
+                </form>
+            </p>
+        </div>
+    </div>    
+</center>
+<br/>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content%}
+
+
+<center>
+    {% if searched %}
+        <h2>Your search result of "{{ searched }}"</h2>
+        <br/>
+        <table class="table table-hover table-striped">
+            <thead class="table table-dark">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Subtitle</th>
+                <th scope="col">Authors</th>
+                <th scope="col">Publisher</th>
+                <th scope="col">Published Date</th>
+                <th scope="col">Category</th>
+                <th scope="col">Expense</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for booktitle in booktitles %}
+                <tr>
+                  <td>{{ booktitle.id }}</td>
+                  <td><a href="{% url 'updatebook' booktitle.id %}">{{ booktitle.title }}</a></td>
+                  <td>{{ booktitle.subtitle }}</td>
+                  <td>{{ booktitle.authors }}</td>
+                  <td>{{ booktitle.publisher }}</td>
+                  <td>{{ booktitle.published_date }}</td>
+                  <td>{{ booktitle.category }}</td>
+                  <td>{{ booktitle.distribution_expense }}</td>          
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+    {% else %}
+        <h2>Oops! You didn't type in a book title in the search box ...</h2>    
+    {% endif %}
+
+</center>
+
+
+{% endblock %}

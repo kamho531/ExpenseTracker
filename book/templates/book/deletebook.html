@@ -1,0 +1,31 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+
+<center>
+    <div class="card" style="width: 38rem;">
+        <div class="card-header" style="font-family: Helvetica; font-size: x-large;">
+            Delete book
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <form method="POST">
+                    {% csrf_token %}   
+                    <p style="font-size: x-large;">Are you Sure to delete book '{{ book }}'?</p>
+                    <p style="font-size: x-large;">This can't be undone!</p>
+                    </br>
+                    <input type="submit" class="btn btn-outline-danger btn-lg" value="Confirm"/>
+                    <a class="btn btn-outline-warning btn-lg" href="{% url 'home' %}" role="button">Cancel</a>
+                </form>
+            </p>
+        </div>
+    </div>
+
+</center>
+
+
+
+
+
+
+{% endblock %}

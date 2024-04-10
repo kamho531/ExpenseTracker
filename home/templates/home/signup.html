@@ -1,0 +1,39 @@
+{% extends 'home/base.html' %}
+
+{% block content%}
+
+<center>
+    <div class="card" style="width: 38rem;">
+        <div class="card-header" style="font-family: Helvetica; font-size: x-large;">
+            User Registration
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            There are errors in your form
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    {{ field.errors }}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+                    <div style="text-align: left;">
+                    {{ form.as_p }}
+                    </div>
+                    <br/>                    
+                    <button type="submit" class="btn btn-outline-info btn-lg">Register</button>                  
+                </form>
+            </p>
+        </div>
+        <div class="card-footer text-muted" style="font-size: large;">
+            Already have an account? <a href="{% url 'home' %}">Sign in</a> here!
+        </div>
+    </div>    
+</center>
+
+{% endblock %}

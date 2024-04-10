@@ -1,0 +1,33 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content%}
+
+<center>
+    <div class="card" style="width: 34rem;">
+        <div class="card-header" style="font-family: Helvetica; font-size: x-large;">
+            Book Category<br/>
+        </div>
+        <div class="card-body">
+            <p class="card-text" style="text-align: left;">
+                {% for category in categories %}
+                <a class="p-2" href="{% url 'updatecategory' category.id %}" style="font-size: x-large;">{{ category }}</a><br/>
+                {% endfor %}
+            </p><br/>
+            <a class="btn btn-outline-primary btn-lg" href="{% url 'addcategory' %}" role="button">Add New Category</a>
+            <a class="btn btn-outline-success btn-lg" href="{% url 'showexpense' %}" role="button">View Expenses by Category</a>
+        </div>
+        <div class="card-footer" style="font-family: Helvetica; font-size: x-large;">
+            <form class="d-flex" method=POST action="{% url 'searchbycategory' %}">
+                {% csrf_token %}
+                <input class="form-control me-2" type="search" placeholder="Search book by category" aria-label="Search" name="searchedbycategory">
+                <button class="btn btn-outline-primary btn-lg" type="submit">Search</button>               
+            </form>
+        </div>   
+    </div>
+</center>
+
+
+
+{% endblock %}

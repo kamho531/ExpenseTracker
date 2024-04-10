@@ -1,0 +1,67 @@
+{% extends 'home/base.html' %}
+
+{% block content%}
+
+
+<center>
+    <h2>Distribution Expense by Book Category</h2>
+</center>
+<br/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+<canvas id="myChart" width="100" height="100"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Business Analytics', 'Data Ethics', 'Data Science', 'Deep Learning', 'Maths', 'NLP', 'Python', 'R Studio', 'SQL', 'Statistics', 'Visualization'],
+        datasets: [{
+            label: 'Distribution Expense',
+            data: ['{{BA}}', '{{DE}}', '{{DS}}', '{{DL}}', '{{Ma}}', '{{NLP}}', '{{Py}}', '{{RS}}', '{{SQL}}', '{{St}}', '{{V}}'],
+            backgroundColor: [
+                'rgba(1, 1, 1, 0.2)',
+                'rgba(255, 0, 0, 0.2)',
+                'rgba(0, 255, 0, 0.2)',
+                'rgba(0, 0, 255, 0.2)',
+                'rgba(255, 255, 0, 0.2)',
+                'rgba(0, 255, 255, 0.2)',
+                'rgba(255, 0, 255, 0.2)',
+                'rgba(127, 127, 127, 0.2)',
+                'rgba(0, 127, 0, 0.2)',
+                'rgba(127, 63, 0, 0.2)',
+                'rgba(63, 211, 159, 0.2)',
+            ],
+            borderColor: [
+                'rgba(1, 1, 1, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(0, 255, 0, 1)',
+                'rgba(0, 0, 255, 1)',
+                'rgba(255, 255, 0, 1)',
+                'rgba(0, 255, 255, 1)',
+                'rgba(255, 0, 255, 1)',
+                'rgba(127, 127, 127, 1)',
+                'rgba(0, 127, 0, 1)',
+                'rgba(127, 63, 0, 1)',
+                'rgba(63, 211, 159, 1)',
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+
+
+
+
+{% endblock %}

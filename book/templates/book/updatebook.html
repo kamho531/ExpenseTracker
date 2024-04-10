@@ -1,0 +1,28 @@
+{% extends 'home/base.html' %}
+
+{% block content%}
+
+<center>
+    <div class="card" style="width: 48rem;">
+        <div class="card-header" style="font-family: Helvetica; font-size: x-large;">
+            Record of {{ book }}
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <form method="POST" >
+                    {% csrf_token %} 
+              
+                    {{ form.as_p }}
+
+                    <br/>
+                    <button type="submit" class="btn btn-outline-info btn-lg">Update</button>
+                    <a class="btn btn-outline-warning btn-lg" href="{% url 'home' %}" role="button">Cancel</a>
+                    <a class="btn btn-outline-danger btn-lg" href="{% url 'deletebook' book.id %}" role="button">Delete</a>
+                </form>
+            </p>
+        </div>
+    </div>
+</center>
+
+
+{% endblock %}
